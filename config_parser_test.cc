@@ -52,12 +52,12 @@ TEST_F(NginxParseConfigTest, Comment) {
 
 // Tests the provided example file from the fork
 TEST_F(NginxParseConfigTest, ProvidedExampleFile) {
-	EXPECT_TRUE(parse_file("example_config"));
+	EXPECT_TRUE(parse_file("resources/example_config"));
 }
 
 // Tests the current nginx example config as of 2017-01-18
 // See https://www.nginx.com/resources/wiki/start/topics/examples/full/
 // 
 TEST_F(NginxParseConfigTest, NginxOfficialExampleFile) {
-	EXPECT_TRUE(parse_file("nginx_example.conf"));
+	EXPECT_TRUE(parse_file("resources/nginx_example.conf"));
 }
