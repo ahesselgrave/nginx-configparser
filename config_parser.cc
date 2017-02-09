@@ -162,7 +162,9 @@ bool NginxConfigParser::Parse(std::istream* config_file, NginxConfig* config) {
     while (true) {
         std::string token;
         token_type = ParseToken(config_file, &token);
+#ifdef DEBUG_VERBOSE
         printf ("%s: %s\n", TokenTypeAsString(token_type), token.c_str());
+#endif
         if (token_type == TOKEN_TYPE_ERROR) {
             break;
         }
@@ -232,9 +234,11 @@ bool NginxConfigParser::Parse(std::istream* config_file, NginxConfig* config) {
         last_token_type = token_type;
     }
 
+#ifdef DEBUG_VERBOSE
     printf ("Bad transition from %s to %s\n",
                     TokenTypeAsString(last_token_type),
                     TokenTypeAsString(token_type));
+#endif
     return false;
 }
 
@@ -242,7 +246,9 @@ bool NginxConfigParser::Parse(const char* file_name, NginxConfig* config) {
     std::ifstream config_file;
     config_file.open(file_name);
     if (!config_file.good()) {
+#ifdef DEBUG_VERBOSE
         printf ("Failed to open config file: %s\n", file_name);
+#endif
         return false;
     }
 
